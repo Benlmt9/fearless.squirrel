@@ -39,6 +39,20 @@ function collisions()
     player_falling();
 }
 
+function enemy_collision()
+{
+    for (var i = 0; i < player1.bullets.length; i++)
+    {
+        if (Math.abs(player1.bullets[i].position.x) == enemy1.graphic.position.x &&
+            Math.abs(player1.bullets[i].position.y) == enemy1.graphic.position.y)
+        {
+            scene.remove(player1.bullets[i]);
+            scene.remove(enemy1);
+            player1.bullets.splice(i, 1);
+            i--;
+        }
+    }
+}
 function bullet_collision()
 {
     //collision between bullet and walls
