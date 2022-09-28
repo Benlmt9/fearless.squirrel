@@ -6,6 +6,32 @@ var bullet_player1_material = new THREE.MeshLambertMaterial(
     transparent: false
 });
 
+function enemyshoot()
+{
+    if(bulletTime1 + 0.8 < clock.getElapsedTime())
+    {
+        bullet = new THREE.Mesh(
+        new THREE.SphereGeometry(2),
+        bullet_player1_material);
+        scene.add(bullet);
+        bullet.position.x = enemy1.graphic.position.x + 7.5 * Math.cos(enemy1.direction);
+        bullet.position.y = enemy1.graphic.position.y + 7.5 * Math.sin(enemy1.direction);
+        bullet.angle = enemy1.direction;
+        enemy1.bullets.push(bullet);
+        bulletTime1 = clock.getElapsedTime();
+    }
+
+    // move bullets
+    var moveDistance = 5;
+
+    for (var i = 0; i < enemy1.bullets.length; i++)
+    {
+        enemy1.bullets[i].position.x += moveDistance * Math.cos(enemy1.bullets[i].angle);
+        enemy1.bullets[i].position.y += moveDistance * Math.sin(enemy1.bullets[i].angle);
+    }
+    
+}
+
 function shoot()
 {
     if (keyboard.pressed("space") && bulletTime1 + 0.8 < clock.getElapsedTime())
@@ -37,13 +63,14 @@ function collisions()
     bullet_collision();
     player_collision();
     player_falling();
+    enemy_collision();
 }
 
 function enemy_collision()
 {
     for (var i = 0; i < player1.bullets.length; i++)
     {
-        if (Math.abs(player1.bullets[i].position.x) == enemy1.graphic.position.x &&
+        if (Math.abs(player1.bullets[i].position.x) == enemy1.graphic.position.x ||
             Math.abs(player1.bullets[i].position.y) == enemy1.graphic.position.y)
         {
             scene.remove(player1.bullets[i]);
