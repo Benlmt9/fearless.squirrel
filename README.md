@@ -20,8 +20,8 @@ A video game with three.js
 **TO DO**
 
 - [ ] : As a dev, I want to fix function name
-- [ ] : As a player, I want to turn right/left to be able to change my direction (right/left)
-- [ ] : As a player, I want a better light to be able to see all the map
+- [X] : As a player, I want to turn right/left to be able to change my direction (right/left)
+- [X] : As a player, I want a better light to be able to see all the map
 - [ ] : As a player, I don't want any error in the Console bar 
 - [ ] : As a player, I want to be stop when I go into the left wall
 - [ ] : As a player, I want to have a ground when I start the game
